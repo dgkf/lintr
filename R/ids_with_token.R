@@ -4,7 +4,7 @@
 #'
 #' @param source_file A list of source expressions, the result of a call to
 #' `\link{get_source_expressions}()`, for the desired filename.
-#' @param value Character. String correspondin to the token to search for.
+#' @param value Character. String corresponding to the token to search for.
 #' For example:
 #' \itemize{
 #'   \item "SYMBOL"
