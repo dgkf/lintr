@@ -14,7 +14,7 @@ indentation_linter <- function(length = 80L, indent = 2L) {
     # short-circuit on empty expression content
     if (!nrow(exprs)) return(list())
 
-    # calculate indentation per-line and for multiline expressions
+    # calculate minimum indentation per-line and for multiline expressions
     exprs$line_indent <- pmin(exprs$col1, exprs$col2)
     exprs_indent <- do.call(
       rbind,
@@ -44,7 +44,7 @@ indentation_linter <- function(length = 80L, indent = 2L) {
     # calculate linty indenting
     ignored_tokens <- c("')'", "'}'", "','")
     linty_closing_curly <- with(exprs, token == "'}'" & rel_indent != 0)
-    linty_expr <- with(exprs, !token %in% ignored_tokens  & bad_indent)
+    linty_expr <- with(exprs, !token %in% ignored_tokens & bad_indent)
 
     # filter out nested linty expressions to avoid cascading indentation lints
     if (any(linty_expr)) {
